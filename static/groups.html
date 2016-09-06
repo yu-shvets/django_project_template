@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Сервіс Обліку Студентів</title>
+    <title>Список груп</title>
     <meta name="description" value="Система Обліку Студентів Навчального Закладу">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -26,39 +26,33 @@
         <div class="row" id="sub-header">
             <div class="col-xs-12">
               <ul class="nav nav-tabs" role="tablist">
-                  <li role="presentation" class="active"><a href="index.html">Студенти</a></li>
+                  <li role="presentation"><a href="index.html">Студенти</a></li>
                   <li role="presentation"><a href="journal.html">Відвідування</a></li>
-                  <li role="presentation"><a href="groups.html">Групи</a></li>
+                  <li role="presentation" class="active"><a href="#">Групи</a></li>
               </ul>
             </div>
         </div>
         <div class="row" id="content-columns">
             <div class="col-xs-12" id="content-column">
 
-              <div class="alert alert-warning">Зміни скасовано.</div>
+              <h2>Групи</h2>
 
-              <h2>База Студентів</h2>
-
-              <a class="btn btn-primary" href="#">Додати Студента</a>
+              <a class="btn btn-primary" href="#">Додати Групу</a>
 
               <table class="table table-hover table-striped">
                 <thead>
                     <tr>
-                        <th><a href="">№</a></th>
-                        <th>Фото</th>
-                        <th><a href="">Прізвище &uarr;</a></th>
-                        <th><a href="">Ім'я</a></th>
-                        <th><a href="">№ Білету</a></th>
+                        <th>#</th>
+                        <th><a href="">Назва &uarr;</a></th>
+                        <th><a href="">Староста</a></th>
                         <th>Дії</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td><img height="30" width="30" class="img-circle" src="img/Mickey.jpg"></td>
-                        <td><a title="Редагувати" href="#">Миша</a></td>
-                        <td><a title="Редагувати" href="#">Міккі</a></td>
-                        <td>2123</td>
+                        <td><a title="Редагувати" href="#">МтМ - 21</a></td>
+                        <td><a title="Редагувати" href="#">Людина Мауглі</a></td>
                         <td>
                             <div class="dropdown">
                               <button class="btn btn-default dropdown-toggle"
@@ -66,10 +60,7 @@
                                   <span class="caret"></span>
                               </button>
                               <ul class="dropdown-menu" role="menu">
-                                  <li role="presentation">
-                                      <a role="menuitem" tabindex="-1" href="#">Відвідування</a>
-                                  </li>
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="student_form.html">Редагувати</a>
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Редагувати</a>
                                   </li>
                                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Видалити</a>
                                   </li>
@@ -79,10 +70,8 @@
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td><img height="30" width="30" class="img-circle" src="img/Donald.jpg"></td>
-                        <td><a title="Редагувати" href="#">Качка</a></td>
-                        <td><a title="Редагувати" href="#">Дональд</a></td>
-                        <td>2124</td>
+                        <td><a title="Редагувати" href="#">МтМ - 22</a></td>
+                        <td><a title="Редагувати" href="#">Ведмідь Балу</a></td>
                         <td>
                             <div class="dropdown">
                               <button class="btn btn-default dropdown-toggle"
@@ -90,9 +79,6 @@
                                   <span class="caret"></span>
                               </button>
                               <ul class="dropdown-menu" role="menu">
-                                  <li role="presentation">
-                                      <a role="menuitem" tabindex="-1" href="#">Відвідування</a>
-                                  </li>
                                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Редагувати</a>
                                   </li>
                                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Видалити</a>
@@ -103,10 +89,8 @@
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td><img height="30" width="30" class="img-circle" src="img/Pluto.jpg"></td>
-                        <td><a title="Редагувати" href="#">Пес</a></td>
-                        <td><a title="Редагувати" href="#">Плутон</a></td>
-                        <td>2125</td>
+                        <td><a title="Редагувати" href="#">МтМ - 23</a></td>
+                        <td><a title="Редагувати" href="#">Слон Дамбо</a></td>
                         <td>
                             <div class="dropdown">
                               <button class="btn btn-default dropdown-toggle"
@@ -114,9 +98,6 @@
                                   <span class="caret"></span>
                               </button>
                               <ul class="dropdown-menu" role="menu">
-                                  <li role="presentation">
-                                      <a role="menuitem" tabindex="-1" href="#">Відвідування</a>
-                                  </li>
                                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Редагувати</a>
                                   </li>
                                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Видалити</a>
@@ -125,16 +106,14 @@
                             </div>
                         </td>
                     </tr>
+
                 </tbody>
               </table>
               <nav>
                 <ul class="pagination">
-                    <li><a href="#">&laquo;</a></li>
                     <li><a href="#">1</a></li>
-                    <li class="active"><a href="#">2</a></li> <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&raquo;</a></li>
+                    <li class="active"><a href="#">2</a></li>
+                    <li><a href="#">Далі</a></li>
                 </ul>
               </nav>
 
@@ -143,7 +122,7 @@
         </div>
         <div class="row" id="footer">
             <div class="col-xs-12">
-              &copy; 2014 Сервіс Обліку Студентів
+              &copy; 2014 Сервіс Бази Студентів
             </div>
         </div>
     </div>

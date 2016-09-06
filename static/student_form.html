@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма студента</title>
+    <meta name="description" value="Система Обліку Студентів Навчального Закладу">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row" id="header">
+            <div class="col-xs-8">
+              <h1>Форма редагування Студента</h1>
+            </div>
+        </div>
+          <form class="form-horizontal">
+                <div class="form-group">
+                  <label for="inputName" class="col-xs-2 control-label">Ім'я*</label>
+                <div class="col-xs-3">
+                  <input type="name" class="form-control" id="inputName" placeholder="Міккі">
+                </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputFName" class="col-xs-2 control-label">По-батькові</label>
+                <div class="col-xs-3">
+                  <input type="fname" class="form-control" id="inputFName" placeholder="Уолтович">
+                </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inpuLName" class="col-xs-2 control-label">Прізвище*</label>
+                <div class="col-xs-3">
+                  <input type="lname" class="form-control" id="inputLName" placeholder="Миша">
+                </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputN" class="col-xs-2 control-label">№ Білету*</label>
+                <div class="col-xs-3">
+                  <input type="n" class="form-control" id="inputN" placeholder="2123">
+                </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputDate" class="col-xs-2 control-label">Дата народження</label>
+                <div class="col-xs-3">
+                  <input type="date" class="form-control" id="inputDate" placeholder="1928-11-18">
+                </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-xs-2 control-label" >Фото</label>
+                <div class="col-xs-3">
+                  <label>Наразі: <a href="#">img/Mickey.jpg<input type="checkbox"></a><br>Очистити</label>
+                </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-xs-2 control-label" ></label>
+                <div class="col-xs-3">
+                  <label>Змінити: <a class="btn btn-default btn-sm" href="#" role="button">Choose file</a> No file chosen</label>
+                </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-xs-2 control-label">Група</label>
+                <div class="col-xs-3">
+                  <select class="form-control">
+                    <option value="">Усі Студенти</option>
+                    <option value="">МтМ - 22, Миша Міккі (No 2123)</option>
+                    <option value="">МтМ - 21, Качка Дональд (No 2124)</option>
+                    <option value="">МтМ - 20, Пес Плутон (No 2125)</option>
+                  </select>
+                </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-xs-2 control-label">Додаткові нотатки</label>
+                <div class="col-xs-3">
+                  <textarea class="form-control" rows="5" placeholder="тест d"></textarea>
+                </div>
+                </div>
+
+          </form>
+        <div id="footer" style="height: 70px; background-color: #dddddd">
+          <div style="margin-left: 200px; position: absolute; margin-top: 30px">
+            <ul class="nav nav-pills">
+                <li role="presentation" class="active"><a href="#">Зберегти</a></li>
+                <li role="presentation"><a href="#">Скасувати</a></li>
+            </ul>
+          </div>
+        </div>
+    </div>
+
+
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
