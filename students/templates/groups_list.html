@@ -1,7 +1,17 @@
 {% extends "base.html" %}
 {% load static from staticfiles %}
-{% block meta_title %}Студенти{% endblock meta_title %}
-{% block title %}База Студентів{% endblock title %}
+{% block meta_title %}Список груп{% endblock meta_title %}
+{% block logo %}Сервіс Обліку Студентів{% endblock logo %}
+{% block menu %}
+    <strong>Група:</strong>
+              <select>
+                  <option value="">Усі Групи</option>
+                  <option value="">МтМ - 22</option>
+                  <option value="">МтМ - 21</option>
+                  <option value="">МтМ - 20</option>
+              </select>
+{% endblock menu %}
+{% block title %}Групи{% endblock title %}
 {% block content %}
 
               <a class="btn btn-primary" href={% url "groups_add" %}>Додати Групу</a>
@@ -82,12 +92,7 @@
 
                 </tbody>
               </table>
-              <nav>
-                <ul class="pagination">
-                    <li><a href="#">1</a></li>
-                    <li class="active"><a href="#">2</a></li>
-                    <li><a href="#">Далі</a></li>
-                </ul>
-              </nav>
+    {% include "pagination.html" %}
 
 {% endblock content %}
+{% block footer %}&copy; 2014 Сервіс Обліку Груп{% endblock footer %}
