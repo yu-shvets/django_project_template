@@ -17,7 +17,8 @@ from django.conf.urls import *
 from django.contrib import admin
 from students.views import students, groups, journal
 from .settings import MEDIA_ROOT, DEBUG
-import django.views
+from django.conf import settings
+from django.views.static import serve
 
 
 urlpatterns = [
@@ -39,10 +40,12 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     ]
 
-if DEBUG:
+if settings.DEBUG:
 # serve files from media folder
-        urlpatterns.append(url(r'^media/(?P<path>.*)$', django.views.static.serve,
-                               {'document_root': MEDIA_ROOT}))
+        urlpatterns += [url(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+                        ]
 
 
 
