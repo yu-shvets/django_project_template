@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import *
 from django.contrib import admin
-from students.views import students, groups, journal, exams
+from students.views import students, groups, journal, exams, contact_admin
 from .settings import MEDIA_ROOT, DEBUG
 from django.conf import settings
 from django.views.static import serve
@@ -25,8 +25,8 @@ urlpatterns = [
     # Students urls
     url(r'^$', students.students_list, name='home'),
     url(r'^students/add/$', students.students_add, name='students_add'),
-    url(r'^students/(?P<sid>\d+)/edit/$', students.students_edit, name='students_edit'),
-    url(r'^students/(?P<sid>\d+)/delete/$', students.students_delete, name='students_delete'),
+    url(r'^students/(?P<pk>\d+)/edit/$', students.StudentUpdateView.as_view(), name='students_edit'),
+    url(r'^students/(?P<pk>\d+)/delete/$', students.StudentDeleteView.as_view(), name='students_delete'),
 
     # Groups urls
     url(r'^groups/$', groups.groups_list, name='groups'),
@@ -35,10 +35,13 @@ urlpatterns = [
     url(r'^groups/(?P<gid>\d+)/delete/$', groups.groups_delete, name='groups_delete'),
 
     # Journal urls
-    url(r'^journal/$', journal.journal, name='journal'),
+    url(r'^journal/(?P<pk>\d+)?/?$', journal.JournalView.as_view(), name='journal'),
 
     # Exams urls
     url(r'^exams/$', exams.exams_list, name='exams'),
+
+    # Contact_admin url
+    url(r'^contact-admin/$', contact_admin.contact_admin, name='contact_admin'),
 
     url(r'^admin/', include(admin.site.urls)),
     ]

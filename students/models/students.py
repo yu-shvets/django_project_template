@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from ..models.groups import *
+from django.core.exceptions import ValidationError
 
 
 class Student(models.Model):
@@ -35,7 +36,7 @@ class Student(models.Model):
     photo = models.ImageField(
         blank=True,
         verbose_name=u"Фото",
-        null=True)
+        null=True,)
 
     ticket = models.CharField(
         max_length=256,
@@ -54,3 +55,5 @@ class Student(models.Model):
 
     def __unicode__(self):
         return u"%s %s" % (self.first_name, self.last_name)
+
+

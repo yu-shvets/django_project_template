@@ -9,6 +9,9 @@
     <meta name="description" value="Система Обліку Студентів Навчального Закладу">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href={{ PORTAL_URL }}{% static "css/main.css" %}>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="{% static "js/main.js" %}"></script>
     {% block extra_css %}{% endblock extra_css %}
 </head>
 <body>
@@ -30,15 +33,20 @@
                       <a href={% url "groups" %}>Групи</a></li>
                   <li role="presentation" {% if '/exams' in request.path %} class="active"{% endif %}>
                       <a href={% url "exams" %}>Іспити</a></li>
+                  <li role="presentation" {% if '/contact-admin' in request.path %} class="active"{% endif %}>
+                      <a href={% url "contact_admin" %}>Контакт</a></li>
               </ul>
             </div>
         </div>
         <div class="row" id="content-columns">
             <div class="col-xs-12" id="content-column">
 
-              {% comment "Not used alert so far" %}
-              <div class="alert alert-warning" role="alert">Status Update!</div>
-              {% endcomment %}
+              {% block status_message %}
+              {% if request.GET.status_message %}
+              <div class="alert alert-warning" role="alert">{{ request.GET.status_message }}
+              </div>
+              {% endif %}
+              {% endblock %}
 
               <h2>{% block title %}{% endblock title %}</h2>
 
@@ -52,9 +60,6 @@
     </div>
 
 
-
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
-    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
 
      {% block extra_js %}{% endblock extra_js %}

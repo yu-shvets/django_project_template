@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'students',
 ]
 
@@ -120,3 +121,18 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
 
 
+# email settings
+# please, set here you smtp server details and your admin email
+
+ADMIN_EMAIL = 'admin@django_project_template.com'
+EMAIL_HOST = 'smtp.mandrillapp.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'web'
+EMAIL_HOST_PASSWORD = '6gEFb-WCRL3r9TmfpDHLKA'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+
+# Crispy forms
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
