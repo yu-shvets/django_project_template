@@ -1,16 +1,8 @@
 {% extends "base.html" %}
 {% load static from staticfiles %}
+{% load pagenav %}
 {% block meta_title %}Студенти{% endblock meta_title %}
 {% block logo %}Сервіс Обліку Студентів{% endblock logo %}
-{% block menu %}
-    <strong>Група:</strong>
-              <select>
-                  <option value="">Усі Студенти</option>
-                  <option value="">МтМ - 22, Миша Міккі (No 2123)</option>
-                  <option value="">МтМ - 21, Качка Дональд (No 2124)</option>
-                  <option value="">МтМ - 20, Пес Плутон (No 2125)</option>
-              </select>
-{% endblock menu %}
 {% block title %}База Студентів{% endblock title %}
 {% block content %}
 
@@ -71,8 +63,14 @@
                                 <img class="img-circle" src={% static "img/Covex.jpg" %} height="30" width="30" />
                             {% endif %}
                         </td>
-                        <td><a title="Редагувати" href={% url "students_edit" student.id %}>{{ student.last_name }}</a></td>
-                        <td><a title="Редагувати" href={% url "students_edit" student.id %}>{{ student.first_name }}</a></td>
+                        <td><a title="Редагувати" href="{% url "students_edit" student.id %}" class="student-edit-form-link">
+                            {{ student.last_name }}
+                            </a>
+                        </td>
+                        <td><a title="Редагувати" href="{% url "students_edit" student.id %}" class="student-edit-form-link">
+                            {{ student.first_name }}
+                            </a>
+                        </td>
                         <td>{{ student.ticket }}</td>
                         <td>
                             <div class="dropdown">
@@ -84,7 +82,8 @@
                                   <li role="presentation">
                                       <a role="menuitem" tabindex="-1" href="{% url "journal" student.id %}">Відвідування</a>
                                   </li>
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href={% url "students_edit" student.id %}>Редагувати</a>
+                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="{% url "students_edit" student.id %}"
+                                    class="student-edit-form-link">Редагувати</a>
                                   </li>
                                   <li role="presentation"><a role="menuitem" tabindex="-1" href={% url "students_delete" student.id %}>Видалити</a>
                                   </li>
@@ -96,28 +95,7 @@
                 </tbody>
               </table>
 
-    {% if students.has_other_pages %}
-    {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
-    <nav>
-        <ul class="pagination">
-        <li>
-            <a href="{% url "home" %}?page=1&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">&laquo;</a>
-        </li>
-    {% for p in students.paginator.page_range %}
-        <li {% if students.number == p %}class="active"{% endif %}>
-            <a href="{% url "home" %}?page={{ p }}&amp;order_by={{ order_by }}&amp;reverse={{ reverse }}">{{ p }}
-            </a>
-        </li>
-    {% endfor %}
-        <li>
-            <a href="{% url "home" %}?page={{ students.paginator.num_pages}}&amp;
-            order_by={{ order_by }}&amp;reverse={{ reverse }}"> &raquo;
-            </a>
-        </li>
-        </ul>
-    </nav>
-    {% endwith %}
-    {% endif %}
+{% pagenav object_list=students is_paginated=is_paginated paginator=paginator %}
 
 {% endblock content %}
 {% block footer %}&copy; 2014 Сервіс Обліку Студентів{% endblock footer %}

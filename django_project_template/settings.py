@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 from db import DATABASES
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'registration',
+    'social_django',
     'students',
+    'django_project_template',
 ]
 
 MIDDLEWARE = [
@@ -67,10 +71,22 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+                'students.context_processors.groups_processor',
+                'django.template.context_processors.i18n',
             ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+   'social_core.backends.facebook.FacebookOAuth2',
+   'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1345394075512512'
+SOCIAL_AUTH_FACEBOOK_SECRET = '3a2ba35895ca882ac4ef41babde7d85e'
 
 WSGI_APPLICATION = 'django_project_template.wsgi.application'
 
@@ -101,7 +117,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGES = (
+    ('uk', _('Ukrainian')),
+    ('en', _('English')),
+)
+
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -111,6 +132,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'students/locale')
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
@@ -136,3 +160,55 @@ EMAIL_USE_SSL = False
 # Crispy forms
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+LOG_FILE = os.path.join(BASE_DIR, 'studentsdb.log')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s: %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s: %(message)s'
+        },
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': LOG_FILE,
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['null'],
+            'propagate': True,
+            'level': 'INFO',
+        },
+        'students.signals': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+        },
+        'students.views.contact_admin': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+        }
+    }
+}
+
+REGISTRATION_OPEN = True
+
+LOGIN_URL = 'users:auth_login'
+LOGOUT_URL = 'users:auth_logout'

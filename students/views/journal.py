@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse
 from datetime import datetime, date
 from ..models.monthjournal import MonthJournal
 from ..models.students import Student
-from ..util import paginate
+from ..util import paginate, get_current_group
 
 
 class JournalView(TemplateView):
@@ -46,15 +46,19 @@ class JournalView(TemplateView):
         myear, mmonth = month.year, month.month
         number_of_days = monthrange(myear, mmonth)[1]
         context['month_header'] = [{'day': d,
-            'verbose': day_abbr[weekday(myear, mmonth, d)][:2]}
+            'verbose': day_abbr[weekday(myear, mmonth, d)][:3]}
             for d in range(1, number_of_days+1)]
 
         # get all students from database, or just one if we need to
         # display journal for one student; also check if we need to
         # filter by group
 
+        current_group = get_current_group(self.request)
+
         if kwargs.get('pk'):
             queryset = [Student.objects.get(pk=kwargs['pk'])]
+        elif current_group:
+            queryset = Student.objects.filter(student_group=current_group)
         else:
             queryset = Student.objects.all().order_by('last_name')
 

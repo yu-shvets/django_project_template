@@ -4,10 +4,16 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from ..models.groups import Group
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from ..util import get_current_group
 
 
 def groups_list(request):
-    groups = Group.objects.all()
+    current_group = get_current_group(request)
+
+    if current_group:
+        groups = Group.objects.filter(pk=current_group.pk)
+    else:
+        groups = Group.objects.all()
 
     order_by = request.GET.get('order_by', '')
     if order_by in ('id', 'title', 'leader'):

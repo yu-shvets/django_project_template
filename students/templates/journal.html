@@ -1,15 +1,8 @@
 {% extends "base.html" %}
+
+{% load i18n %}
 {% load static from staticfiles %}
 {% block meta_title %}Облік Відвідування{% endblock meta_title %}
-{% block menu %}
-    <strong>Група:</strong>
-              <select>
-                  <option value="">Усі Студенти</option>
-                  <option value="">МтМ - 22, Миша Міккі (No 2123)</option>
-                  <option value="">МтМ - 21, Качка Дональд (No 2124)</option>
-                  <option value="">МтМ - 20, Пес Плутон (No 2125)</option>
-              </select>
-{% endblock menu %}
 {% block title %}Облік Вівідування{% endblock title %}
 {% block content %}
 
@@ -44,8 +37,7 @@
       <th>Студент</th>
       {% for day in month_header %}
       <th class="day-header">
-        <!-- TODO: translate day name -->
-        {{ day.verbose }}
+        {% trans day.verbose %}
         <br />
         {{ day.day }}
       </th>

@@ -2,6 +2,15 @@
 {% load static from staticfiles %}
 {% block meta_title %}Список груп{% endblock meta_title %}
 {% block logo %}Сервіс Обліку Студентів{% endblock logo %}
+{% block menu %}
+    <strong>Група:</strong>
+              <select>
+                  <option value="">Усі Групи</option>
+                  <option value="">МтМ - 22</option>
+                  <option value="">МтМ - 21</option>
+                  <option value="">МтМ - 20</option>
+              </select>
+{% endblock menu %}
 {% block title %}Групи{% endblock title %}
 {% block content %}
 
@@ -46,8 +55,7 @@
                     <tr>
                         <td>{{ group.id }}</td>
                         <td><a title="Редагувати" href={% url "groups_edit" group.id %}>{{ group.title }}</a></td>
-                        <td>{% if group.leader %}<a title="Редагувати" href={% url "students_edit" group.leader.id %}>
-                            {{ group.leader }}</a>{% endif %}</td>
+                        <td><a title="Редагувати" href={% url "students_edit" group.leader.id %}>{{ group.leader }}</a></td>
                         <td>
                             <div class="dropdown">
                               <button class="btn btn-default dropdown-toggle"
